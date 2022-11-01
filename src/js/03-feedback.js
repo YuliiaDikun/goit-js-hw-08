@@ -9,7 +9,7 @@ formEl.addEventListener('input', trottle(formEvent, 500));
 formEl.addEventListener('submit', e => {
   e.preventDefault();
   consoleFormValues();
-  localStorage.clear();
+  localStorage.removeItem(LOCALSTORAGE_KEY);
   formEl.reset();
 });
 
