@@ -21,7 +21,7 @@ function formEvent(e) {
     message: formEl.elements.message.value,
   };
 
-  setLocalStorage(LOCALSTORAGE_KEY, JSON.stringify(formValue));
+  setLocalStorage(LOCALSTORAGE_KEY, formValue);
 }
 
 function setLocalStorage(key, value) {
@@ -48,8 +48,10 @@ function consoleFormValues() {
 
 function updateFormInput() {
   const localStorageValues = getLocalStorage(LOCALSTORAGE_KEY);
-  console.log(localStorageValues);
-  emailInputEl.value = localStorageValues.email || '';
-  messageInputEl.value = localStorageValues.message || '';
+  if (localStorageValues) {
+    emailInputEl.value = localStorageValues.email;
+    messageInputEl.value = localStorageValues.message;
+  }
 }
+
 updateFormInput();
