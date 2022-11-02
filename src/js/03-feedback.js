@@ -1,7 +1,5 @@
 const trottle = require('lodash.throttle');
 const formEl = document.querySelector('.feedback-form');
-const emailInputEl = document.querySelector('input[type=email]');
-const messageInputEl = document.querySelector('textarea');
 const LOCALSTORAGE_KEY = 'feedback-form-state';
 
 formEl.addEventListener('input', trottle(formEvent, 500));
@@ -49,8 +47,8 @@ function consoleFormValues() {
 function updateFormInput() {
   const localStorageValues = getLocalStorage(LOCALSTORAGE_KEY);
   if (localStorageValues) {
-    emailInputEl.value = localStorageValues.email;
-    messageInputEl.value = localStorageValues.message;
+    formEl.elements.email.value = localStorageValues.email;
+    formEl.elements.message.value = localStorageValues.message;
   }
 }
 

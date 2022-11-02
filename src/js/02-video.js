@@ -5,17 +5,10 @@ const player = new Player(iframe);
 const LOCALSTORAGE_KEY = 'videoplayer-current-time';
 const trottle = require('lodash.throttle');
 
-function getVideoTime() {
-  player
-    .getCurrentTime()
-    .then(function (seconds) {
-      localStorage.setItem(LOCALSTORAGE_KEY, seconds);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+function getVideoTime(e) {
+  localStorage.setItem(LOCALSTORAGE_KEY, e.seconds);
 }
 
 player.on('timeupdate', trottle(getVideoTime, 1000));
 
-player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY)) || 0;
+player.setCurrentTime(localStorage.getItem(LOCALSTORAGE_KEY) || 0);
